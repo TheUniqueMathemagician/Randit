@@ -46,10 +46,10 @@
       <div v-if="plural">
         <div class="flex space-between">
           <h2 class="noselect">Détail</h2>
-          <InputButton @click="showDetails = !showDetails">text</InputButton>
+          <input-toggle @change="showDetails"></input-toggle>
         </div>
-        <transition name="fade">
-          <table v-show="showDetails">
+        <div ref="wrapper" class="wrapper">
+          <table ref="details">
             <thead>
               <tr>
                 <th></th>
@@ -62,12 +62,23 @@
               <tr v-for="(item, index) in details" :key="index">
                 <td>Lancé</td>
                 <td>{{index + 1}}</td>
-                <td>=></td>
+                <td>
+                  <svg
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 297.5 297.5"
+                    style="enable-background:new 0 0 297.5 297.5;"
+                  >
+                    <polygon
+                      points="297.5,148.25 148,33.25 148,100.25 0,100.25 0,199.25 148,199.25 148,264.25 "
+                    />
+                  </svg>
+                </td>
                 <td>{{item}}</td>
               </tr>
             </tbody>
           </table>
-        </transition>
+        </div>
       </div>
     </section>
   </main>
@@ -80,6 +91,7 @@ import InputNumber from "../shared/Input_Number.vue";
 import InputRadio from "../shared/Input_Radio.vue";
 import InputSubmit from "../shared/Input_Submit.vue";
 import InputText from "../shared/Input_Text.vue";
+import InputToggle from "../shared/Input_Toggle.vue";
 export default {
   components: {
     InputButton,
@@ -87,7 +99,8 @@ export default {
     InputNumber,
     InputRadio,
     InputSubmit,
-    InputText
+    InputText,
+    InputToggle
   },
   data() {
     return {
@@ -95,7 +108,7 @@ export default {
       generated: 0,
       isCustom: false,
       plural: "",
-      showDetails: false
+      detailsVisible: false
     };
   },
   methods: {
@@ -122,9 +135,29 @@ export default {
       this.generated = this.details.reduce((a_accu, a_curr) => {
         return a_accu + a_curr;
       });
+
+      const wrapper = this.$refs["wrapper"];
+      const details = this.$refs["details"];
+      setTimeout(() => {
+        if (this.detailsVisible) {
+          wrapper.style.maxHeight = details.scrollHeight + "px";
+        } else {
+          wrapper.style.maxHeight = null;
+        }
+      }, 0);
     },
     setCustom(a_value) {
       this.isCustom = a_value || false;
+    },
+    showDetails(a_value) {
+      this.detailsVisible = a_value;
+      const wrapper = this.$refs["wrapper"];
+      const details = this.$refs["details"];
+      if (this.detailsVisible) {
+        wrapper.style.maxHeight = details.scrollHeight + "px";
+      } else {
+        wrapper.style.maxHeight = null;
+      }
     }
   },
   name: "dice_page"
@@ -180,16 +213,10 @@ export default {
   background: var(--color-6);
   height: 2px;
 }
-.fade-enter {
-  transform: translateY(-100%);
-  opacity: 0;
-}
-.fade-enter-to {
-  transform: translateY(0);
-  opacity: 1;
-}
-.fade-enter-active {
-  transition: all 3s ease;
+.wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
 }
 
 h2 {
@@ -198,5 +225,13 @@ h2 {
 td {
   padding: 0.3rem;
   text-align: center;
+  height: 100%;
+}
+table svg {
+  height: 1rem;
+  width: 1rem;
+}
+table svg polygon {
+  fill: var(--color-2);
 }
 </style>

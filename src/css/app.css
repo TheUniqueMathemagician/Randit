@@ -71,15 +71,16 @@ ul {
 main {
   height: 100%;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  row-gap: 1rem;
   padding: 1rem;
   box-sizing: border-box;
   background: var(--color-4);
   color: var(--color-1);
   overflow-y: auto;
   align-items: center;
+  justify-items: center;
+  align-content: flex-start;
 }
 
 section {

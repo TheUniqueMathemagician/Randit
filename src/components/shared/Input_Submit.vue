@@ -1,5 +1,5 @@
 <template>
-  <input type="submit" :value="value" />
+  <input type="submit" @click="$emit('click', $event)" :value="value" />
 </template>
 
 <script>
