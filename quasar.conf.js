@@ -25,7 +25,7 @@ module.exports = function(ctx) {
             // 'themify',
             // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
             // 'roboto-font', // optional, you are not bound to it
-            // 'material-icons' // optional, you are not bound to it
+            'material-icons' // optional, you are not bound to it
         ],
 
         // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
@@ -44,7 +44,15 @@ module.exports = function(ctx) {
 
             components: [
                 'QTimeline',
-                'QTimelineEntry'
+                'QTimelineEntry',
+                'QList',
+                'QImg',
+                'QItem',
+                'QItemSection',
+                'QItemLabel',
+                'QExpansionItem',
+                'QTabPanels',
+                'QTabPanel'
             ],
             directives: [],
 

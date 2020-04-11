@@ -1,36 +1,73 @@
 <template>
   <main class="noselect">
+    <header>
+      <h1 class="text-center">A propos de cette application</h1>
+    </header>
+
     <section>
-      <h1 class="text-center">A propos</h1>
-      <h2>A venir</h2>
-      <ul>
-        <li>Ajout d'une option dictionnaire.</li>
-        <li>Ajout d'une option pour ajuster la fréquence des caractères.</li>
-        <li>Amélioration de la documentation.</li>
-        <li>Amélioration de la barre de menu.</li>
-        <li>Ajustement de la palette de couleurs.</li>
-        <li>Modification de l'icône.</li>
-        <li>Redimensionnement automatique de la zone de clés générées.</li>
-      </ul>
-      <h2>
-        <span>La 2</span>
-        <sup>ème</sup>
-        <span>version poussera le vice encore plus loin!</span>
-      </h2>
-      <ul>
-        <li>Ajout de pioche dans un dictionnaire.</li>
-        <li>Ajout d'un générateur de lancés de dés.</li>
-        <li>Ajout des profils permettant différentes sauvegardes et configurations.</li>
-        <li>Ajout de traductions ( EN - DE - NL )</li>
-      </ul>
-      <p>Le dictionnaire pourrait éventuellement trouver des mots EN LIGNE! (si tu es sâge &#128540;)</p>
-      <h2>Message de l'auteur</h2>
+      <q-timeline layout="comfortable">
+        <q-timeline-entry heading>Ligne du temps</q-timeline-entry>
+        <q-timeline-entry
+          color="white"
+          :key="'timeline' + index"
+          :subtitle="item.completionDate"
+          :title="item.title"
+          :avatar="index === 0 ? newIconURL : undefined"
+          v-for="(item, index) in timeline"
+        >
+          <q-expansion-item label="Détails">
+            <template v-slot:header>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img :src="require(`../../assets/${item.role}.png`)" />
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>{{ {"trash":'Modification', "new": 'Ajout'}[item.role] }}</q-item-section>
+            </template>
+            <p>{{item.description}}</p>
+          </q-expansion-item>
+        </q-timeline-entry>
+        <q-timeline-entry heading>Future améliorations</q-timeline-entry>
+        <q-timeline-entry
+          subtitle="À venir"
+          :body="item.description"
+          color="white"
+          :key="'roadmap' + index"
+          :title="item.title"
+          v-for="(item, index) in roadmap"
+        />
+      </q-timeline>
+    </section>
+
+    <section>
+      <!-- <h2>En cours</h2> -->
+      <!-- <q-list>
+        <q-item>
+          <q-item-section>
+            <q-item-label lines="1">Photos</q-item-label>
+            <q-item-label caption>February 22nd, 2019</q-item-label>
+          </q-item-section>
+          <q-item-section side>
+            <q-item-label lines="1">Photos</q-item-label>
+            <q-item-label caption>February 22nd, 2019</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item>test</q-item>
+        <q-item>test</q-item>
+      </q-list>-->
+    </section>
+
+    <footer>
+      <h2>Quelque chose à signaler?</h2>
+      <p>
+        Vous pouvez signaler un bug ou des suggestions à
+        <input-link-external>Cette adresse</input-link-external>
+      </p>
       <p>Application faite avec amour par Ambrelium&copy;.</p>
-      <p>Si l'application ne vous plait pas, j'en suis désolé &#128546;.</p>
-    </section>
-    <section>
-      <InputLinkBackward>Retour</InputLinkBackward>
-    </section>
+      <p class="q-mb-md">
+        <input-link-backward>Retour</input-link-backward>
+      </p>
+    </footer>
   </main>
 </template>
 
@@ -41,6 +78,95 @@ export default {
   components: {
     InputLinkBackward,
     InputLinkExternal
+  },
+  computed: {
+    newIconURL() {
+      return require("../../assets/cake.png");
+    }
+  },
+  data() {
+    return {
+      timeline: [
+        {
+          completionDate: "11 Février 2020",
+          description:
+            "Ca y est ! L'application est enfin sortie dans sa première version !",
+          role: "new",
+          title: "Lancement de la première release"
+        },
+        {
+          completionDate: "13 Février 2020",
+          description:
+            "La palette de couleur a été légèrement modifiée pour une meilleure expérience.",
+          role: "trash",
+          title: "Ajustement de la palette de couleurs"
+        },
+        {
+          completionDate: "20 Février 2020",
+          title: "Ajout d'une icône d'application",
+          role: "new",
+          description: "Une icône d'application a été ajoutée."
+        },
+        {
+          completionDate: "21 Février 2020",
+          description: "Une barre de menu contenant des option a été ajoutée.",
+          role: "new",
+          title: "Ajout d'un menu"
+        },
+        {
+          completionDate: "22 Février 2020",
+          description:
+            "Tu peux désormais modifier tes préférences et les sauvegarder.",
+          role: "new",
+          title: "Ajout des préférences"
+        },
+        {
+          completionDate: "24 Février 2020",
+          description:
+            "Un manuel d'utilisation t'aidera lorsque perdu tu seras.",
+          role: "new",
+          title: "Ajout d'un manuel"
+        },
+        {
+          completionDate: "11 Avril 2020",
+          description:
+            "L'application dispose désormais de traductions ! Tu peux maintenant choisir une langue.",
+          role: "new",
+          title: "Traductions"
+        }
+      ],
+      roadmap: [
+        {
+          description:
+            "La zone de clés générées ne se redimentionne pas correctement, et le texte n'est pas centré.",
+          role: "new",
+          title: "Redimensionnement automatique de la zone de clés générées"
+        },
+        {
+          description:
+            "La zone de clés générées ne se redimentionne pas correctement, et le texte n'est pas centré.",
+          role: "new",
+          title: "Redimensionnement automatique de la zone de clés générées"
+        },
+        {
+          description: "Le dictionnaire serait en ligne.",
+          role: "new",
+          title: "Dictionnaire en ligne"
+        },
+        {
+          description:
+            "Les profils permettent de sauvegarder des configurations différentes, et en changer facilement",
+          role: "new",
+          title: "Profils"
+        },
+        {
+          description:
+            "Ajout d'une option pour ajuster la fréquence des caractères spéciaux.",
+          role: "new",
+          title: "Fréquence des caractères spéciaux"
+        }
+      ]
+    };
   },
   name: "about_page"
 };
