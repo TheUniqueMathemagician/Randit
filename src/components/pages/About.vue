@@ -13,21 +13,20 @@
         <li>Redimensionnement automatique de la zone de clés générées.</li>
       </ul>
       <h2>
-        La 2
-        <sup>ème</sup> version poussera le vice encore plus loin!
+        <span>La 2</span>
+        <sup>ème</sup>
+        <span>version poussera le vice encore plus loin!</span>
       </h2>
       <ul>
         <li>Ajout de pioche dans un dictionnaire.</li>
         <li>Ajout d'un générateur de lancés de dés.</li>
         <li>Ajout des profils permettant différentes sauvegardes et configurations.</li>
+        <li>Ajout de traductions ( EN - DE - NL )</li>
       </ul>
       <p>Le dictionnaire pourrait éventuellement trouver des mots EN LIGNE! (si tu es sâge &#128540;)</p>
       <h2>Message de l'auteur</h2>
       <p>Application faite avec amour par Ambrelium&copy;.</p>
-      <p>
-        Si l'application ne vous plait pas, j'en suis désolé &#128546;. Dites-vous que vous auriez pu avoir
-        <InputLinkExternal href="http://de.virtuworld.net/">CE</InputLinkExternal>&nbsp;résultat &#128580;.
-      </p>
+      <p>Si l'application ne vous plait pas, j'en suis désolé &#128546;.</p>
     </section>
     <section>
       <InputLinkBackward>Retour</InputLinkBackward>

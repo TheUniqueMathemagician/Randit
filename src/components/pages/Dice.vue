@@ -136,13 +136,15 @@ export default {
         return a_accu + a_curr;
       });
 
-      const wrapper = this.$refs["wrapper"];
-      const details = this.$refs["details"];
       setTimeout(() => {
-        if (this.detailsVisible) {
-          wrapper.style.maxHeight = details.scrollHeight + "px";
-        } else {
-          wrapper.style.maxHeight = null;
+        const wrapper = this.$refs["wrapper"];
+        const details = this.$refs["details"];
+        if (wrapper && details) {
+          if (this.detailsVisible) {
+            wrapper.style.maxHeight = details.scrollHeight + "px";
+          } else {
+            wrapper.style.maxHeight = null;
+          }
         }
       }, 0);
     },

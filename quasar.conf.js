@@ -7,7 +7,8 @@ module.exports = function(ctx) {
         // --> boot files are part of "main.js"
         // https://quasar.dev/quasar-cli/cli-documentation/boot-files
         boot: [
-            'axios'
+            'axios',
+            'i18n'
         ],
 
         // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -23,9 +24,8 @@ module.exports = function(ctx) {
             // 'eva-icons',
             // 'themify',
             // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-
-            'roboto-font', // optional, you are not bound to it
-            'material-icons' // optional, you are not bound to it
+            // 'roboto-font', // optional, you are not bound to it
+            // 'material-icons' // optional, you are not bound to it
         ],
 
         // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
@@ -42,7 +42,10 @@ module.exports = function(ctx) {
             //            (not treeshaking Quasar; biggest bundle size; convenient)
             all: 'auto',
 
-            components: [],
+            components: [
+                'QTimeline',
+                'QTimelineEntry'
+            ],
             directives: [],
 
             // Quasar plugins
@@ -57,7 +60,7 @@ module.exports = function(ctx) {
             scopeHoisting: true,
             vueRouterMode: 'hash', // available values: 'hash', 'history'
             showProgress: true,
-            gzip: false,
+            gzip: true,
             analyze: false,
             // Options below are automatically set depending on the env, set them if you want to override
             // preloadChunks: false,

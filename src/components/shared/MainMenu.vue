@@ -171,7 +171,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 nav {
   align-items: center;
   box-sizing: border-box;
@@ -179,12 +179,12 @@ nav {
   grid-template-columns: 2rem auto 1fr auto;
   height: 100%;
   background: var(--color-6);
-}
-nav img {
-  height: 70%;
-  margin: auto;
-  object-fit: cover;
-  object-position: center;
+  img {
+    height: 70%;
+    margin: auto;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 /* Menu group */
