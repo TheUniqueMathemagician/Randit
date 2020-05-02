@@ -43,16 +43,17 @@ module.exports = function(ctx) {
             all: 'auto',
 
             components: [
-                'QTimeline',
-                'QTimelineEntry',
-                'QList',
+                'QExpansionItem',
                 'QImg',
                 'QItem',
-                'QItemSection',
                 'QItemLabel',
-                'QExpansionItem',
+                'QItemSection',
+                'QList',
+                'QSelect',
+                'QTabPanel',
                 'QTabPanels',
-                'QTabPanel'
+                'QTimeline',
+                'QTimelineEntry'
             ],
             directives: [],
 
