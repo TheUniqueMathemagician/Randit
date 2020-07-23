@@ -1,43 +1,52 @@
-const routes = [
+import Main from "../layouts/Main.vue"
+
+const routes = [{
+  path: "/",
+  component: Main,
+  children: [{
+      path: '',
+      name: 'home',
+      component: () => import('../pages/Home.vue')
+    },
+    //   {
+    //     path: '/about',
+    //     name: 'about',
+    //     component: () => import('../pages/About.vue')
+    //   },
     {
-        path: '/',
-        name: 'home',
-        component: () => import('../components/pages/Home.vue'),
-        redirect: '/generator'
+      path: 'dice',
+      name: 'dice',
+      component: () => import('../pages/Dice.vue')
     },
     {
-        path: '/about',
-        name: 'about',
-        component: () => import('../components/pages/About.vue')
+      path: 'key',
+      name: 'key',
+      component: () => import('../pages/Key.vue')
     },
     {
-        path: '/dice',
-        name: 'dice',
-        component: () => import('../components/pages/Dice.vue')
+      path: 'word',
+      name: 'word',
+      component: () => import('../pages/Word.vue')
     },
+    //   {
+    //     path: '/manual',
+    //     name: 'manual',
+    //     component: () => import('../pages/Manual.vue')
+    //   },
     {
-        path: '/generator',
-        name: 'generator',
-        component: () => import('../components/pages/Generator.vue')
-    },
-    {
-        path: '/manual',
-        name: 'manual',
-        component: () => import('../components/pages/Manual.vue')
-    },
-    {
-        path: '/settings',
-        name: 'settings',
-        component: () => import('../components/pages/Settings.vue')
+      path: 'settings',
+      name: 'settings',
+      component: () => import('../pages/Settings.vue')
     }
-]
+  ]
+}]
 
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {
-    routes.push({
-        path: '*',
-        component: () => import('../components/pages/Error404.vue')
-    })
+  routes.push({
+    path: '*',
+    component: () => import('../pages/Error404.vue')
+  })
 }
 
 export default routes

@@ -1,9 +1,9 @@
 {
-  "name": "genit",
+  "name": "randit",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "GenIt",
-  "cordovaId": "org.cordova.genit",
+  "productName": "Randit",
+  "cordovaId": "org.cordova.randit",
   "capacitorId": "",
   "author": "Mathemagician <53182934+TheUniqueMathemagician@users.noreply.github.com>",
   "private": true,
@@ -11,13 +11,13 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.7.0",
+    "@quasar/extras": "^1.9.0",
     "axios": "^0.18.1",
-    "quasar": "^1.10.0",
+    "quasar": "^1.12.13",
     "vue-i18n": "^8.16.0"
   },
   "devDependencies": {
-    "@quasar/app": "^1.8.3",
+    "@quasar/app": "^1.9.6",
     "devtron": "^1.4.0",
     "electron": "^7.1.9",
     "electron-debug": "^3.0.1",

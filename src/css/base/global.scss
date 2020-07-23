@@ -1,0 +1,71 @@
+html,
+body,
+#q-app {
+  --color-1: #ffffff;
+  --color-2: #fafafacc;
+  --color-3: #005a74;
+  --color-4: #003847;
+  --color-5: #004052;
+  --color-6: #00212b;
+
+  background-color: var(--color-5);
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  color: var(--color-2);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0.2em 0;
+}
+
+@for $i from 1 to 6 {
+  h#{$i} {
+    font-size: (2 - ($i/6)) + rem;
+  }
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+/* ScrollBar  */
+
+/* width */
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--color-6);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /* box-shadow: -2px 2px 2px 2px black; */
+  background: var(--color-4);
+  border-left: 3px solid var(--color-6);
+  border-right: 3px solid var(--color-6);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-5);
+}

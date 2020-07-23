@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import application from './application'
-import electron from './electron'
 
 Vue.use(Vuex)
 
@@ -15,17 +14,16 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
-export default function(/* { ssrContext } */) {
-    const Store = new Vuex.Store({
-        modules: {
-            application,
-            electron
-        },
+export default function ( /* { ssrContext } */ ) {
+  const Store = new Vuex.Store({
+    modules: {
+      application
+    },
 
-        // enable strict mode (adds overhead!)
-        // for dev mode only
-        strict: process.env.DEV
-    })
+    // enable strict mode (adds overhead!)
+    // for dev mode only
+    strict: process.env.DEV
+  })
 
-    return Store
+  return Store
 }

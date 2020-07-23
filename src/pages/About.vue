@@ -1,7 +1,7 @@
 <template>
   <main class="noselect">
     <header>
-      <h1 class="text-center">A propos de cette application</h1>
+      <h1 class="text-center">{{ $t("ABOUT_THIS_APP") }}</h1>
     </header>
 
     <section>
@@ -22,9 +22,11 @@
                   <img :src="require(`../../assets/${item.role}.png`)" />
                 </q-avatar>
               </q-item-section>
-              <q-item-section>{{ {"trash":'Modification', "new": 'Ajout'}[item.role] }}</q-item-section>
+              <q-item-section>{{
+                { trash: "Modification", new: "Ajout" }[item.role]
+              }}</q-item-section>
             </template>
-            <p>{{item.description}}</p>
+            <p>{{ item.description }}</p>
           </q-expansion-item>
         </q-timeline-entry>
         <q-timeline-entry heading>Future améliorations</q-timeline-entry>
@@ -63,7 +65,7 @@
         Vous pouvez signaler un bug ou des suggestions à
         <input-link-external>Cette adresse</input-link-external>
       </p>
-      <p>Application faite avec amour par Ambrelium&copy;.</p>
+      <p>Application faite avec amour par Ambrelium &copy;.</p>
       <p class="q-mb-md">
         <input-link-backward>Retour</input-link-backward>
       </p>
@@ -171,12 +173,3 @@ export default {
   name: "about_page"
 };
 </script>
-
-<style scoped>
-h1 {
-  margin-bottom: 1rem;
-}
-ul {
-  padding-left: 2rem;
-}
-</style>
