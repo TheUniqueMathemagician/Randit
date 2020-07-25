@@ -1,20 +1,50 @@
 <template>
-	<input
-		type='number'
-		:id='id'
-		:min='min'
-		:max='max'
-		:value='value'
-		ref='input'
-		@mousewheel.stop.prevent='mouseWheelHandler($event)'
-		@blur.prevent='blurHandler($event)'
-		@change='changeHandler($event)'
-	/>
+	<div>
+		<input
+			type='number'
+			:id='id'
+			:min='min'
+			:max='max'
+			:value='value'
+			ref='input'
+			@mousewheel.stop.prevent='mouseWheelHandler($event)'
+			@blur.prevent='blurHandler($event)'
+			@change='changeHandler($event)'
+		/>
+		<q-btn
+			icon='delete'
+			v-if='deletable'
+			@click='deleteHandler'
+			flat
+			round
+			size='sm'
+			class='q-ma-xs'
+		></q-btn>
+		<q-btn
+			icon='add'
+			v-else-if='addable'
+			@click='addHandler'
+			flat
+			round
+			size='sm'
+			class='q-ma-xs'
+		></q-btn>
+	</div>
 </template>
 
 <script>
 	export default {
 		props: {
+			addable: {
+				type: Boolean,
+				required: false,
+				default: false,
+			},
+			deletable: {
+				type: Boolean,
+				required: false,
+				default: false,
+			},
 			id: {
 				type: String,
 				required: true,
@@ -37,15 +67,21 @@
 			},
 		},
 		methods: {
+			addHandler(a_event) {
+				this.$emit('add', parseInt(this.$refs['input'].value))
+			},
+			deleteHandler(a_event) {
+				this.$emit('delete')
+			},
 			blurHandler(a_event) {
 				if (a_event.target.value == '') {
 					a_event.target.value = 0
-					if (this.$refs['input'].value < this.min) {
-						this.$refs['input'].value = this.min
-					}
-					if (this.$refs['input'].value > this.max) {
-						this.$refs['input'].value = this.max
-					}
+				}
+				if (this.$refs['input'].value < this.min) {
+					this.$refs['input'].value = this.min
+				}
+				if (this.$refs['input'].value > this.max) {
+					this.$refs['input'].value = this.max
 				}
 			},
 			changeHandler(a_event) {
@@ -67,7 +103,7 @@
 			},
 		},
 		mounted() {
-			this.$refs['input'].value = this.value
+			this.$refs['input'].value = this.$props.value
 			if (this.$refs['input'].value < this.min) {
 				this.$refs['input'].value = this.min
 			}
@@ -79,13 +115,17 @@
 </script>
 
 <style scoped>
-	input[type='number'] {
+	div {
 		background-color: var(--color-6);
+		display: inline-block;
+	}
+	input[type='number'] {
+		padding: 0.5rem 0;
+		background-color: transparent;
 		border: 0px solid transparent;
 		color: var(--color-2);
 		font-size: 1rem;
 		outline: 0;
-		padding: 0.5rem 0;
 		text-align: center;
 	}
 	input[type='number']:hover,

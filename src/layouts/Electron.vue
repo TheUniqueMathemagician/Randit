@@ -4,11 +4,12 @@
 			class='bg-primary text-white q-ma-none'
 			height-hint='98'
 		>
-			<q-bar class='r-bg-darkest text-white q-pa-none'>
+			<q-bar class='r-bg-dark text-white q-pa-none'>
 				<div class='cursor-pointer non-selectable'>
 					<div class='q-px-md q-py-xs'>Fichier</div>
 					<q-menu
 						fit
+						square
 						anchor='bottom left'
 						self='top left'
 					>
@@ -17,7 +18,7 @@
 							style='min-width: 100px'
 							class='r-bg-darkest'
 						>
-							<q-item
+							<!-- <q-item
 								clickable
 								v-close-popup
 							>
@@ -69,47 +70,66 @@
 									</q-list>
 								</q-menu>
 							</q-item>
-							<q-separator />
+							<q-separator />-->
 							<q-item
 								clickable
 								v-close-popup
+								@click='handler_quit'
 							>
-								<q-item-section>Quit</q-item-section>
+								<q-item-section>Quitter</q-item-section>
 							</q-item>
 						</q-list>
 					</q-menu>
 				</div>
 				<div class='cursor-pointer non-selectable'>
 					<div class='q-px-md'>Editer</div>
-					<q-menu>
+					<q-menu
+						fit
+						square
+						anchor='bottom left'
+						self='top left'
+					>
 						<q-list
 							dense
 							style='min-width: 100px'
+							class='r-bg-darkest'
 						>
 							<q-item
 								clickable
 								v-close-popup
+								@click='$router.push("/settings")'
 							>
-								<q-item-section>Cut</q-item-section>
+								<q-item-section>Préférences</q-item-section>
+							</q-item>
+						</q-list>
+					</q-menu>
+				</div>
+				<div class='cursor-pointer non-selectable'>
+					<div class='q-px-md'>Aide</div>
+					<q-menu
+						fit
+						square
+						anchor='bottom left'
+						self='top left'
+					>
+						<q-list
+							dense
+							style='min-width: 100px'
+							class='r-bg-darkest'
+						>
+							<q-item
+								clickable
+								v-close-popup
+								@click='$router.push("/manual")'
+							>
+								<q-item-section>Documentation</q-item-section>
 							</q-item>
 							<q-item
 								clickable
 								v-close-popup
+								@click='$router.push("/about")'
 							>
-								<q-item-section>Copy</q-item-section>
-							</q-item>
-							<q-item
-								clickable
-								v-close-popup
-							>
-								<q-item-section>Paste</q-item-section>
-							</q-item>
-							<q-separator />
-							<q-item
-								clickable
-								v-close-popup
-							>
-								<q-item-section>Select All</q-item-section>
+								<q-item-section>A propos</q-item-section>
 							</q-item>
 						</q-list>
 					</q-menu>
@@ -118,7 +138,7 @@
 				<div class='window-icons-group'>
 					<button
 						class='fixed-width'
-						@click.prevent='buttonHandler_minimize'
+						@click.prevent='handler_minimize'
 					>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
@@ -135,10 +155,10 @@
 					</button>
 					<button
 						class='fixed-width'
-						@click.prevent='buttonHandler_maximize'
+						@click.prevent='handler_maximize'
 					>
 						<svg
-							v-if='$store.getters["electron/maximized"]'
+							v-if='$store.getters["application/maximized"]'
 							xmlns='http://www.w3.org/2000/svg'
 							width='24'
 							height='24'
@@ -170,7 +190,7 @@
 					</button>
 					<button
 						class='red fixed-width'
-						@click.prevent='buttonHandler_quit'
+						@click.prevent='handler_quit'
 					>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
@@ -189,7 +209,7 @@
 					</button>
 				</div>
 			</q-bar>
-			<q-toolbar class='q-ma-none q-pa-none'>
+			<q-toolbar class='q-ma-none q-pa-none r-bg-light'>
 				<q-tabs
 					align='left'
 					dense
@@ -211,11 +231,6 @@
 						label='Mots'
 						name='word'
 					/>
-					<q-route-tab
-						to='/settings'
-						label='Options'
-						name='settings'
-					/>
 				</q-tabs>
 			</q-toolbar>
 		</q-header>
@@ -232,6 +247,17 @@
 			return {
 				tabs: '',
 			}
+		},
+		methods: {
+			handler_maximize() {
+				this.$electron.ipcRenderer.send('maximize')
+			},
+			handler_minimize() {
+				this.$electron.ipcRenderer.send('minimize')
+			},
+			handler_quit() {
+				this.$electron.ipcRenderer.send('quit')
+			},
 		},
 	}
 </script>
@@ -285,7 +311,7 @@
 		width: 46px;
 	}
 	.window-icons-group button:hover {
-		background-color: var(--color-5);
+		background-color: var(--color-3);
 		opacity: 1;
 	}
 	.window-icons-group button.red:hover {

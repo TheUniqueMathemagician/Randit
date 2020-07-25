@@ -99,20 +99,23 @@
 				<q-btn
 					color='primary'
 					type='submit'
-					class='q-ma-md'
+					class='q-ma-md no-border-radius'
 				>Générer</q-btn>
 			</InputForm>
 		</section>
 		<section class='result'>
 			<q-input
-				:error='false'
-				clearable
-				label-color='white'
-				bg-color='blue-10'
+				bg-color='dark'
 				v-model='text'
+				:error='false'
+				label-color='white'
 				filled
+				type='text'
+				no-error-icon
+				hide-bottom-space
 				autogrow
-				input-class='custom text-white'
+				square
+				input-class='custom text-white text-center'
 			></q-input>
 		</section>
 	</q-page>

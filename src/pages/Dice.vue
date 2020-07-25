@@ -1,17 +1,16 @@
 <template>
 	<q-page class='q-pa-md'>
 		<section class='radio-group max-size container-center'>
-			<InputForm @submit.prevent='handleSubmit'>
-				<h2>Options</h2>
-				<div class='group'>
+			<q-form @submit.prevent='handleSubmit'>
+				<div class='group<'>
 					<InputRadio
-						v-for='(item, index) in $store.getters["application/config_dice"]
-              .defaults'
-						:key='index'
+						v-if='$store.getters["application/config_dice"].defaults.length > 0'
+						v-for='(item, index) in $store.getters["application/config_dice"].defaults'
 						:id='"radio_" + item'
+						:key='index'
+						:name='"dice"'
 						:value='item'
 						@click='setCustom(false)'
-						name='dice'
 					>{{ item }}</InputRadio>
 				</div>
 				<br />
@@ -32,9 +31,12 @@
 						:class='{ "border-active": isCustom, border: true }'
 					/>
 				</div>
-				<h2>Générer</h2>
-				<div class='group auto'>
-					<InputSubmit value='Lancer' />
+				<div class='group auto q-pa-md'>
+					<q-btn
+						color='primary'
+						type='submit'
+						class='no-border-radius'
+					>Générer</q-btn>
 					<InputNumber
 						id='amount'
 						:max='99'
@@ -43,11 +45,13 @@
 					/>
 					<span>dé{{ plural ? "s" : "" }}</span>
 				</div>
-			</InputForm>
+			</q-form>
 		</section>
 		<section>
-			<h2 class='noselect'>Résultat</h2>
-			<div class='text-h3'>{{ generated }}</div>
+			<div class='row justify-between'>
+				<h2 class='noselect'>Résultat</h2>
+				<div class='text-h3'>{{ generated }}</div>
+			</div>
 			<div
 				v-if='plural'
 				class='row justify-between'
@@ -100,7 +104,6 @@
 
 <script>
 	import InputButton from '../components/Input_Button.vue'
-	import InputForm from '../components/Input_Form.vue'
 	import InputNumber from '../components/Input_Number.vue'
 	import InputRadio from '../components/Input_Radio.vue'
 	import InputSubmit from '../components/Input_Submit.vue'
@@ -109,7 +112,6 @@
 	export default {
 		components: {
 			InputButton,
-			InputForm,
 			InputNumber,
 			InputRadio,
 			InputSubmit,
@@ -121,7 +123,7 @@
 				details: [],
 				generated: 0,
 				isCustom: false,
-				plural: '',
+				plural: false,
 				detailsVisible: false,
 			}
 		},
@@ -189,6 +191,7 @@
 		display: grid;
 		column-gap: 0.5rem;
 		grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+		max-width: 0px;
 		grid-auto-flow: column;
 		align-items: center;
 	}

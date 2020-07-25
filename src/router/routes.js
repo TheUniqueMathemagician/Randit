@@ -8,11 +8,11 @@ const routes = [{
       name: 'home',
       component: () => import('../pages/Home.vue')
     },
-    //   {
-    //     path: '/about',
-    //     name: 'about',
-    //     component: () => import('../pages/About.vue')
-    //   },
+    {
+      path: 'about',
+      name: 'about',
+      component: () => import('../pages/About.vue')
+    },
     {
       path: 'dice',
       name: 'dice',
@@ -28,11 +28,11 @@ const routes = [{
       name: 'word',
       component: () => import('../pages/Word.vue')
     },
-    //   {
-    //     path: '/manual',
-    //     name: 'manual',
-    //     component: () => import('../pages/Manual.vue')
-    //   },
+    {
+      path: 'manual',
+      name: 'manual',
+      component: () => import('../pages/Manual.vue')
+    },
     {
       path: 'settings',
       name: 'settings',

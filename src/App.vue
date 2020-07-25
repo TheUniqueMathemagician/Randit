@@ -18,18 +18,17 @@
 
 				// Send to IPC
 
-				this.$store.commit(
-					'application/config_dice',
-					ipc.sendSync('get_config_dice')
-				)
-				this.$store.commit(
-					'application/config_key',
-					ipc.sendSync('get_config_word')
-				)
-				this.$store.commit(
-					'application/config_word',
-					ipc.sendSync('get_config_key')
-				)
+				const config_dice = ipc.sendSync('get_config_dice')
+				const config_key = ipc.sendSync('get_config_key')
+				const config_word = ipc.sendSync('get_config_word')
+
+				this.$store.commit('application/config_dice', config_dice)
+				this.$store.commit('application/config_key', config_key)
+				this.$store.commit('application/config_word', config_word)
+
+				this.$store.commit('application/config_dice_settings', config_dice)
+				this.$store.commit('application/config_key_settings', config_key)
+				this.$store.commit('application/config_word_settings', config_word)
 			}
 		},
 		name: 'App',
