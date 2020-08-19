@@ -40,11 +40,6 @@
 							label='Mots'
 							name='word'
 						/>
-						<q-route-tab
-							to='/settings'
-							label='Options'
-							name='settings'
-						/>
 					</q-tabs>
 				</q-toolbar>
 			</template>

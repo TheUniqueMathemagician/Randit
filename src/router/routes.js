@@ -1,4 +1,7 @@
 import Main from "../layouts/Main.vue"
+import {
+  route
+} from "quasar/wrappers"
 
 const routes = [{
   path: "/",
@@ -33,13 +36,20 @@ const routes = [{
       name: 'manual',
       component: () => import('../pages/Manual.vue')
     },
-    {
-      path: 'settings',
-      name: 'settings',
-      component: () => import('../pages/Settings.vue')
-    }
+
   ]
 }]
+
+// if is electron
+if (process.env.MODE === "electron") {
+  routes.find((route) => {
+    return route.path === '/'
+  }).children.push({
+    path: 'settings',
+    name: 'settings',
+    component: () => import('../pages/Settings.vue')
+  })
+}
 
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {

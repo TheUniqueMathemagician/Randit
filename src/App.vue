@@ -29,6 +29,31 @@
 				this.$store.commit('application/config_dice_settings', config_dice)
 				this.$store.commit('application/config_key_settings', config_key)
 				this.$store.commit('application/config_word_settings', config_word)
+			} else {
+				const config_dice = {
+					customDefault: 5,
+					defaults: [4, 6, 8, 10, 12, 20, 30, 100],
+					details: false,
+				}
+				const config_key = {
+					amount: 20,
+					fields: {
+						digits: true,
+						lowercase: true,
+						specialChars: true,
+						uppercase: true,
+					},
+					specialCharset: '#&*-+=',
+				}
+				const config_word = {}
+
+				this.$store.commit('application/config_dice', config_dice)
+				this.$store.commit('application/config_key', config_key)
+				this.$store.commit('application/config_word', config_word)
+
+				this.$store.commit('application/config_dice_settings', config_dice)
+				this.$store.commit('application/config_key_settings', config_key)
+				this.$store.commit('application/config_word_settings', config_word)
 			}
 		},
 		name: 'App',

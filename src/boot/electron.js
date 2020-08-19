@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
-const electron = window.require('electron')
+if (process.env.MODE === "electron") {
+  const electron = window.require('electron')
 
-Vue.prototype.$electron = electron
+  Vue.prototype.$electron = electron
+}

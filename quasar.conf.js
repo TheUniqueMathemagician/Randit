@@ -104,7 +104,7 @@ module.exports = function (ctx) {
       manifest: {
         name: 'Quasar App',
         short_name: 'Quasar App',
-        description: 'A Quasar Framework app',
+        description: 'An app to generate ervything randomly',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
