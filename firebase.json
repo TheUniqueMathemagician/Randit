@@ -10,7 +10,12 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "rewrites": [{
+      "source": "!/@(key|dice|word)/**",
+      "destination": "/index.html"
+    }],
+    "cleanUrls": true
   },
   "storage": {
     "rules": "storage.rules"

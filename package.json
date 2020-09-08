@@ -11,9 +11,9 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.9.4",
+    "@quasar/extras": "^1.9.5",
     "axios": "^0.18.1",
-    "quasar": "^1.12.13",
+    "quasar": "^1.13.2",
     "vue-i18n": "^8.16.0"
   },
   "devDependencies": {

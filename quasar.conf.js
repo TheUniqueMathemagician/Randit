@@ -43,20 +43,7 @@ module.exports = function (ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: 'auto',
 
-      components: [
-        'QExpansionItem',
-        'QImg',
-        'QItem',
-        'QInput',
-        'QItemLabel',
-        'QItemSection',
-        'QList',
-        'QSelect',
-        'QTabPanel',
-        'QTabPanels',
-        'QTimeline',
-        'QTimelineEntry'
-      ],
+      components: [],
       directives: [],
 
       // Quasar plugins
@@ -104,7 +91,7 @@ module.exports = function (ctx) {
       manifest: {
         name: 'Quasar App',
         short_name: 'Quasar App',
-        description: 'An app to generate ervything randomly',
+        description: 'An app to generate everything randomly',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
