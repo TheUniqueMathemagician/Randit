@@ -97,7 +97,7 @@
 							<q-item
 								clickable
 								v-close-popup
-								@click='$router.push("/settings")'
+								@click='push("/settings")'
 							>
 								<q-item-section>Préférences</q-item-section>
 							</q-item>
@@ -120,14 +120,14 @@
 							<q-item
 								clickable
 								v-close-popup
-								@click='$router.push("/manual")'
+								@click='push("/manual")'
 							>
 								<q-item-section>Documentation</q-item-section>
 							</q-item>
 							<q-item
 								clickable
 								v-close-popup
-								@click='$router.push("/about")'
+								@click='push("/about")'
 							>
 								<q-item-section>A propos</q-item-section>
 							</q-item>
@@ -158,7 +158,7 @@
 						@click.prevent='handler_maximize'
 					>
 						<svg
-							v-if='$store.getters["application/maximized"]'
+							v-if='isMaximized'
 							xmlns='http://www.w3.org/2000/svg'
 							width='24'
 							height='24'
@@ -243,6 +243,11 @@
 
 <script>
 	export default {
+		computed: {
+			isMaximized() {
+				return this.$store.getters['application/maximized']
+			},
+		},
 		data() {
 			return {
 				tabs: '',
@@ -257,6 +262,12 @@
 			},
 			handler_quit() {
 				this.$electron.ipcRenderer.send('quit')
+			},
+			push(route) {
+				if (!route) {
+					return
+				}
+				this.$router.push(route)
 			},
 		},
 	}

@@ -1,7 +1,7 @@
 <template>
 	<q-layout view='lHh lpR lFf'>
 		<q-header
-			:elevated='$q.platform.is.mobile'
+			:elevated='isMobile'
 			class='bg-primary text-white q-ma-none'
 			height-hint='98'
 		>
@@ -61,6 +61,11 @@
 
 <script>
 	export default {
+		computed: {
+			isMobile() {
+				return this.$q.platform.is.mobile
+			},
+		},
 		data() {
 			return {
 				drawer: false,

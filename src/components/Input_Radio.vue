@@ -1,12 +1,16 @@
 <template>
-	<div class='noselect'>
+	<div class='noselect relative-position'>
+		<div
+			v-ripple
+			class='relative-position container flex flex-center text-white'
+		></div>
 		<input
 			hidden
 			type='radio'
 			:name='name'
 			:id='id'
 			:value='value'
-			@change='handleChange($event)'
+			@change='h_change($event)'
 		/>
 		<label
 			:for='id'
@@ -21,7 +25,7 @@
 	export default {
 		name: 'input_radio',
 		methods: {
-			handleChange(a_event) {
+			h_change(a_event) {
 				this.$emit('change', a_event)
 			},
 		},
@@ -46,12 +50,6 @@
 </script>
 
 <style scoped>
-	.grid {
-		display: grid;
-		grid-auto-flow: column;
-		column-gap: 0.5rem;
-		grid-template-columns: repeat(auto-fit, 1fr);
-	}
 	label {
 		padding: 0.5rem;
 		background-color: var(--color-6);

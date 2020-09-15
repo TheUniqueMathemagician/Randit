@@ -1,5 +1,5 @@
 <template>
-  <div>
-    no content yet
-  </div>
+	<div>
+		<router-link to='/'>click me to home</router-link>
+	</div>
 </template>

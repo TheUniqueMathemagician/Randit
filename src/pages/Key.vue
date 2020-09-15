@@ -136,11 +136,11 @@
 		computed: {
 			lowercase: {
 				get() {
-					return this.$store.getters['application/config_key'].fields.lowercase
+					return this.$store.getters['config/key'].fields.lowercase
 				},
 				set(a_value) {
-					const config = this.$store.getters['application/config_key']
-					this.$store.commit('application/config_key', {
+					const config = this.$store.getters['config/key']
+					this.$store.commit('config/key', {
 						...config,
 						fields: { ...config.fields, lowercase: a_value },
 					})
@@ -148,11 +148,11 @@
 			},
 			uppercase: {
 				get() {
-					return this.$store.getters['application/config_key'].fields.uppercase
+					return this.$store.getters['config/key'].fields.uppercase
 				},
 				set(a_value) {
-					const config = this.$store.getters['application/config_key']
-					this.$store.commit('application/config_key', {
+					const config = this.$store.getters['config/key']
+					this.$store.commit('config/key', {
 						...config,
 						fields: { ...config.fields, uppercase: a_value },
 					})
@@ -160,11 +160,11 @@
 			},
 			digits: {
 				get() {
-					return this.$store.getters['application/config_key'].fields.digits
+					return this.$store.getters['config/key'].fields.digits
 				},
 				set(a_value) {
-					const config = this.$store.getters['application/config_key']
-					this.$store.commit('application/config_key', {
+					const config = this.$store.getters['config/key']
+					this.$store.commit('config/key', {
 						...config,
 						fields: { ...config.fields, digits: a_value },
 					})
@@ -172,19 +172,31 @@
 			},
 			specialChars: {
 				get() {
-					return this.$store.getters['application/config_key'].fields.specialChars
+					return this.$store.getters['config/key'].fields.specialChars
 				},
 				set(a_value) {
-					const config = this.$store.getters['application/config_key']
-					this.$store.commit('application/config_key', {
+					const config = this.$store.getters['config/key']
+					this.$store.commit('config/key', {
 						...config,
 						fields: { ...config.fields, specialChars: a_value },
 					})
 				},
 			},
+			specialCharset: {
+				get() {
+					return this.$store.getters['config/key'].specialCharset
+				},
+				set(a_value) {
+					const config = this.$store.getters['config/key']
+					this.$store.commit('config/key', {
+						...config,
+						specialCharset: a_value,
+					})
+				},
+			},
 			amount: {
 				get() {
-					return this.$store.getters['application/config_key'].amount
+					return this.$store.getters['config/key'].amount
 				},
 				set(a_value) {
 					try {
@@ -192,8 +204,8 @@
 					} catch (error) {
 						return
 					}
-					let config = this.$store.getters['application/config_key']
-					this.$store.commit('application/config_key', {
+					let config = this.$store.getters['config/key']
+					this.$store.commit('config/key', {
 						...config,
 						amount: a_value,
 					})
@@ -202,7 +214,7 @@
 		},
 		data() {
 			return {
-				config: this.$store.getters['application/config_key'],
+				config: this.$store.getters['config/key'],
 				orange: false,
 				text: '',
 			}
@@ -231,10 +243,11 @@
 					})
 				}
 
-				const specs = this.$store.getters['application/config_key'].specialCharset
-				if (this.specialChars && specs.length > 0) {
+				if (this.specialChars && this.specialCharset.length > 0) {
 					generators.push(() => {
-						return specs[Math.round(Math.random() * (specs.length - 1))]
+						return this.specialCharset[
+							Math.round(Math.random() * (this.specialCharset.length - 1))
+						]
 					})
 				}
 

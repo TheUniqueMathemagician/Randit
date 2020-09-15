@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import application from './application'
+import config from './config'
 
 Vue.use(Vuex)
 
@@ -17,7 +17,7 @@ Vue.use(Vuex)
 export default function ( /* { ssrContext } */ ) {
   const Store = new Vuex.Store({
     modules: {
-      application
+      config
     },
 
     // enable strict mode (adds overhead!)

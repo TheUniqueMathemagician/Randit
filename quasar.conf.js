@@ -9,6 +9,7 @@ module.exports = function (ctx) {
     boot: [
       'axios',
       'electron',
+      'firebase',
       'i18n'
     ],
 
