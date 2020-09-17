@@ -170,20 +170,13 @@
 			<br />
 		</section>
 		<section>
-			<InputLinkBackward href='/'>Retour</InputLinkBackward>
+
 		</section>
 	</q-page>
 </template>
 
 <script>
-	import InputLink from '../components/Input_Link.vue'
-	import InputLinkBackward from '../components/Input_Link_Backward.vue'
-
 	export default {
-		components: {
-			InputLink,
-			InputLinkBackward,
-		},
 		data() {
 			return {
 				splitterModel: 20,

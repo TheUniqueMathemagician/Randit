@@ -63,10 +63,7 @@
 
 		<footer>
 			<h2>Quelque chose à signaler?</h2>
-			<p>
-				Vous pouvez signaler un bug ou des suggestions à
-				<input-link-external>Cette adresse</input-link-external>
-			</p>
+			<p>Vous pouvez signaler un bug ou des suggestions à</p>
 			<p>Application faite avec amour par Ambrelium &copy;.</p>
 			<p class='q-mb-md'>
 				<q-btn
@@ -80,13 +77,7 @@
 </template>
 
 <script>
-	import InputLinkBackward from '../components/Input_Link_Backward.vue'
-	import InputLinkExternal from '../components/Input_Link_External.vue'
 	export default {
-		components: {
-			InputLinkBackward,
-			InputLinkExternal,
-		},
 		computed: {
 			newIconURL() {
 				return require('../assets/cake.png')

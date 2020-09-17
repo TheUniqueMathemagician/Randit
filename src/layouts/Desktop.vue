@@ -36,6 +36,11 @@
 							name='dice'
 						/>
 						<q-route-tab
+							to='/wheel'
+							label='Roue'
+							name='wheel'
+						/>
+						<q-route-tab
 							to='/word'
 							label='Mots'
 							name='word'

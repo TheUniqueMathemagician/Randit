@@ -1,7 +1,7 @@
 <template>
 	<q-page class='q-pa-md'>
 		<section class='max-size container-center'>
-			<InputForm
+			<q-form
 				@submit='submitHandler'
 				class='grid'
 			>
@@ -101,7 +101,7 @@
 					type='submit'
 					class='q-ma-md no-border-radius'
 				>Générer</q-btn>
-			</InputForm>
+			</q-form>
 		</section>
 		<section class='result'>
 			<q-input
@@ -122,100 +122,79 @@
 </template>
 
 <script>
-	import InputCheckbox from '../components/Input_Checkbox.vue'
-	import InputForm from '../components/Input_Form.vue'
-	import InputNumber from '../components/Input_Number.vue'
-	import InputSubmit from '../components/Input_Submit.vue'
+	import InputNumber from '../components/inputs/Number.vue'
 	export default {
 		components: {
-			InputCheckbox,
-			InputForm,
 			InputNumber,
-			InputSubmit,
 		},
 		computed: {
-			lowercase: {
+			amount: {
 				get() {
-					return this.$store.getters['config/key'].fields.lowercase
+					return this.$store.getters['config/key/amount']
 				},
 				set(a_value) {
-					const config = this.$store.getters['config/key']
-					this.$store.commit('config/key', {
-						...config,
-						fields: { ...config.fields, lowercase: a_value },
-					})
-				},
-			},
-			uppercase: {
-				get() {
-					return this.$store.getters['config/key'].fields.uppercase
-				},
-				set(a_value) {
-					const config = this.$store.getters['config/key']
-					this.$store.commit('config/key', {
-						...config,
-						fields: { ...config.fields, uppercase: a_value },
-					})
+					a_value = parseInt(a_value)
+					this.$store.commit(
+						'config/key/amount',
+						this.$store.getters['config/key/amount']
+					)
 				},
 			},
 			digits: {
 				get() {
-					return this.$store.getters['config/key'].fields.digits
+					return this.$store.getters['config/key/fields'].digits
 				},
 				set(a_value) {
-					const config = this.$store.getters['config/key']
-					this.$store.commit('config/key', {
-						...config,
-						fields: { ...config.fields, digits: a_value },
+					this.$store.commit('config/key/fields', {
+						...this.$store.getters['config/key/fields'],
+						digits: a_value,
+					})
+				},
+			},
+			lowercase: {
+				get() {
+					return this.$store.getters['config/key/fields'].lowercase
+				},
+				set(a_value) {
+					this.$store.commit('config/key/fields', {
+						...this.$store.getters['config/key/fields'],
+						lowercase: a_value,
 					})
 				},
 			},
 			specialChars: {
 				get() {
-					return this.$store.getters['config/key'].fields.specialChars
+					return this.$store.getters['config/key/fields'].specialChars
 				},
 				set(a_value) {
-					const config = this.$store.getters['config/key']
-					this.$store.commit('config/key', {
-						...config,
-						fields: { ...config.fields, specialChars: a_value },
+					this.$store.commit('config/key/fields', {
+						...this.$store.getters['config/key/fields'],
+						specialChars: a_value,
 					})
 				},
 			},
 			specialCharset: {
 				get() {
-					return this.$store.getters['config/key'].specialCharset
+					return this.$store.getters['config/key/specialCharset']
 				},
 				set(a_value) {
-					const config = this.$store.getters['config/key']
-					this.$store.commit('config/key', {
-						...config,
-						specialCharset: a_value,
-					})
+					this.$store.commit('config/key/specialCharset', a_value)
 				},
 			},
-			amount: {
+			uppercase: {
 				get() {
-					return this.$store.getters['config/key'].amount
+					return this.$store.getters['config/key/fields'].uppercase
 				},
 				set(a_value) {
-					try {
-						a_value = parseInt(a_value)
-					} catch (error) {
-						return
-					}
-					let config = this.$store.getters['config/key']
-					this.$store.commit('config/key', {
-						...config,
-						amount: a_value,
+					this.$store.commit('config/key/fields', {
+						...this.$store.getters['config/key/fields'],
+						uppercase: a_value,
 					})
 				},
 			},
 		},
 		data() {
 			return {
-				config: this.$store.getters['config/key'],
-				orange: false,
 				text: '',
 			}
 		},

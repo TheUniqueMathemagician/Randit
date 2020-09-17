@@ -54,6 +54,17 @@
 						<q-item
 							clickable
 							v-close-popup
+							to='/wheel'
+							style='color:var(--color-2);'
+						>
+							<q-item-section>
+								<q-item-label>Roue</q-item-label>
+							</q-item-section>
+						</q-item>
+
+						<q-item
+							clickable
+							v-close-popup
 							to='/word'
 							style='color:var(--color-2);'
 						>

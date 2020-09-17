@@ -130,7 +130,7 @@
 						color='negative'
 						type='a'
 						text-color='white'
-						@click.prevent.stop='cancelHandler_key'
+						@click.prevent.stop='h_cancelKey'
 					>Annuler</q-btn>
 				</div>
 			</q-form>
@@ -204,18 +204,8 @@
 						color='negative'
 						type='a'
 						text-color='white'
-						@click.prevent.stop='cancelHandler_dice'
+						@click.prevent.stop='h_cancelDice'
 					>Annuler</q-btn>
-					<!-- <q-chip
-						removable
-						v-model='vanilla'
-						square
-						class='no-border-radius'
-						color='primary'
-						text-color='white'
-						:label='vanillaLabel'
-						:title='vanillaLabel'
-					>14</q-chip>-->
 				</div>
 			</q-form>
 		</section>
@@ -223,20 +213,10 @@
 </template>
 
 <script>
-	import InputCheckbox from '../components/Input_Checkbox.vue'
-	import InputForm from '../components/Input_Form.vue'
-	import InputLinkBackward from '../components/Input_Link_Backward.vue'
-	import InputNumber from '../components/Input_Number.vue'
-	import InputSubmit from '../components/Input_Submit.vue'
-	import InputText from '../components/Input_Text.vue'
+	import InputNumber from '../components/inputs/Number.vue'
 	export default {
 		components: {
-			InputCheckbox,
-			InputForm,
-			InputLinkBackward,
 			InputNumber,
-			InputSubmit,
-			InputText,
 		},
 		computed: {
 			details: {
@@ -369,7 +349,7 @@
 			}
 		},
 		methods: {
-			cancelHandler_key(a_event) {
+			h_cancelKey(a_event) {
 				//TODO: commit avec les valeurs enregistrées
 				if (this.$q.platform.is.electron) {
 					this.$store.commit(
@@ -378,7 +358,7 @@
 					)
 				}
 			},
-			cancelHandler_dice(a_event) {
+			h_cancelDice(a_event) {
 				//TODO: commit avec les valeurs enregistrées
 				if (this.$q.platform.is.electron) {
 					this.$store.commit(

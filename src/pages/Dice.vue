@@ -1,6 +1,6 @@
 <template>
-	<q-page class='q-pa-md'>
-		<section class='radio-group max-width container-center'>
+	<q-page class='q-pa-md page'>
+		<section class='radio-group container-center'>
 			<q-form @submit.prevent='h_submit'>
 				<div class='group'>
 					<InputRadio
@@ -24,11 +24,12 @@
 						<div :class='{ "bg-active": isCustom }'></div>
 					</div>
 					<InputNumber
+						class='border'
 						id='custom'
 						:value='custom'
 						:max='999'
 						:min='1'
-						:class='{ "border-active": isCustom, border: true }'
+						:class='{ "border-active": isCustom}'
 						@change='
               a_event => {
                 custom = parseInt(a_event.target.value);
@@ -61,7 +62,7 @@
 			</q-form>
 		</section>
 
-		<section class='max-width'>
+		<section>
 			<div class='row justify-between'>
 				<h2 class='noselect'>Résultat</h2>
 				<div class='text-h3'>{{ generated }}</div>
@@ -113,24 +114,44 @@
 				</div>
 			</q-slide-transition>
 		</section>
+
+		<section>
+			<q-btn-toggle
+				v-model='test'
+				toggle-color='primary'
+				:options='[
+        {label: "One", value: "1"},
+        {label: "Two", value: "2"},
+        {label: "Three", value: "3"},
+        {label: "Three", value: "4"},
+        {label: "Three", value: "5"},
+        {label: "Three", value: "9"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "three"},
+        {label: "Three", value: "four"},
+        {label: "Three", value: "three"}
+      ]'
+			/>
+		</section>
 	</q-page>
 </template>
 
 <script>
-	import InputButton from '../components/Input_Button.vue'
-	import InputNumber from '../components/Input_Number.vue'
-	import InputRadio from '../components/Input_Radio.vue'
-	import InputSubmit from '../components/Input_Submit.vue'
-	import InputText from '../components/Input_Text.vue'
-	import InputToggle from '../components/Input_Toggle.vue'
+	import InputNumber from '../components/inputs/Number.vue'
+	import InputRadio from '../components/inputs/Radio.vue'
 	export default {
 		components: {
-			InputButton,
 			InputNumber,
 			InputRadio,
-			InputSubmit,
-			InputText,
-			InputToggle,
 		},
 		computed: {
 			custom: {
@@ -183,6 +204,7 @@
 		},
 		data() {
 			return {
+				test: undefined,
 				detailsValues: [],
 				generatedValues: [],
 				plural: false,
@@ -225,14 +247,13 @@
 				} else {
 					this.generatedValues = []
 				}
-				console.log(this.generatedValues)
 			},
 		},
 		name: 'dice_page',
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.big {
 		font-size: 1.6rem;
 	}
@@ -267,10 +288,10 @@
 		background: var(--color-3);
 	}
 	.custom-radio .spacer + .border-active {
-		border: 2px solid var(--color-3);
+		border: 3px solid var(--color-3);
 	}
 	.custom-radio .border {
-		border: 2px solid transparent;
+		border: 3px solid transparent;
 	}
 	.custom-radio .spacer {
 		display: flex;
@@ -301,7 +322,10 @@
 	table svg polygon {
 		fill: var(--color-2);
 	}
-	.max-width {
-		max-width: 600px;
+	.page {
+		display: grid;
+		column-gap: 1rem;
+		row-gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 	}
 </style>
