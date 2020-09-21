@@ -1,12 +1,17 @@
 <template>
 	<q-page>
 		<section>
-			<h1>Manuel</h1>
+			<div class='text-center'>No content yet</div>
+			<q-btn
+				to='/'
+				color='primary'
+			>Retour</q-btn>
+			<!-- <h1>Manuel</h1>
 			<br />
 			<h2>Barre de menu</h2>
-			<br />
-			<div class='menugrid'>
-				<div>
+			<br />-->
+			<!-- <div class='menugrid'> -->
+			<!-- <div>
 					<q-tree
 						:nodes='simple'
 						node-key='label'
@@ -14,28 +19,28 @@
 						:selected.sync='selected'
 						default-expand-all
 					/>
-				</div>
+			</div>-->
 
-				<q-tab-panels
+			<!-- <q-tab-panels
 					:keep-alive='true'
 					v-model='selected'
 					animated
 					transition-prev='jump-up'
 					transition-next='jump-up'
-				>
-					<!-- Level 1 -->
+			>-->
+			<!-- Level 1 -->
 
-					<q-tab-panel
+			<!-- <q-tab-panel
 						dark
 						name='Menu'
 					>
 						<div class='text-h4 q-mb-md'>Menu</div>
 						<p>Le menu dispose de plusieurs raccourcis permettant une navigation plus aisée de l'application</p>
-					</q-tab-panel>
+			</q-tab-panel>-->
 
-					<!-- Level 2 -->
+			<!-- Level 2 -->
 
-					<q-tab-panel name='Fichier'>
+			<!-- <q-tab-panel name='Fichier'>
 						<div class='text-h4 q-mb-md'>Fichier</div>
 						<p>Cet onglet regroupe les actions relatives à l'application.</p>
 					</q-tab-panel>
@@ -48,11 +53,11 @@
 					<q-tab-panel name='Aide'>
 						<div class='text-h4 q-mb-md'>Aide</div>
 						<p>Cet onglet regroupe des pages contenant des informations utiles.</p>
-					</q-tab-panel>
+			</q-tab-panel>-->
 
-					<!-- Level 3 -->
+			<!-- Level 3 -->
 
-					<q-tab-panel name='Préférences'>
+			<!-- <q-tab-panel name='Préférences'>
 						<div class='text-h4 q-mb-md'>Préférences</div>
 						<p class='q-mb-md'>Affiche les options.</p>
 						<div class='text-h5 q-mb-md'>Le saviez-vous ?</div>
@@ -67,9 +72,9 @@
 							Mettre plusieurs occurences du même caractère spécial dans le set
 							multipliera proportionnellement le taux de chance d'apparition de celui-ci.
 						</p>
-					</q-tab-panel>
+			</q-tab-panel>-->
 
-					<q-tab-panel name='Quitter'>
+			<!-- <q-tab-panel name='Quitter'>
 						<div class='text-h4 q-mb-md'>Quitter</div>
 						<p>Ferme l'application</p>
 					</q-tab-panel>
@@ -98,8 +103,8 @@
 						<div class='text-h4 q-mb-md'>A propos</div>
 						<p>Génère des mots selon un dictionnaire fourni. (à venir)</p>
 					</q-tab-panel>
-				</q-tab-panels>
-			</div>
+			</q-tab-panels>-->
+			<!-- </div>
 			<br />
 			<h2>Utilisation</h2>
 			<br />
@@ -133,7 +138,7 @@
 				>
 					<q-tab-panel name='keys'>
 						<q-img
-							:src=' require('../../assets/dice_options.png')'
+							:src=' require("../../assets/dice_options.png")'
 							class='q-mb-md'
 						></q-img>
 						<p>Pour sélectionner une option ou non, il suffit de cliquer sur la ligne correspondante.</p>
@@ -145,12 +150,12 @@
 						</p>
 						<p>cliquez sur le bouton pour générer la clé.</p>
 						<q-img
-							:src=' require('../../assets/dice_generate.png')'
+							:src=' require("../../assets/dice_generate.png")'
 							class='q-mb-md q-mt-md'
 						></q-img>
 						<p>Le résultat est alors affiché dans l'encadré du dessous</p>
 						<q-img
-							:src=' require('../../assets/dice_result.png')'
+							:src=' require("../../assets/dice_result.png")'
 							class='q-mt-md'
 						></q-img>
 					</q-tab-panel>
@@ -167,10 +172,7 @@
 					</q-tab-panel>
 				</q-tab-panels>
 			</div>
-			<br />
-		</section>
-		<section>
-
+			<br />-->
 		</section>
 	</q-page>
 </template>
@@ -246,8 +248,8 @@
 		color: white;
 	}
 	/* .q-tab-panel {
-	  padding: 0;
-	} */
+								  padding: 0;
+								} */
 	.menugrid {
 		display: grid;
 		grid-template-columns: auto 1fr;

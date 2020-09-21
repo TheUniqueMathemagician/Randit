@@ -3,16 +3,16 @@ body,
 #q-app {
   --color-1: #ffffff;
   --color-2: #fafafacc;
-  --color-3: #005a74;
-  --color-4: #003847;
-  --color-5: #004052;
+  --color-3: #07617a;
+  --color-4: #014457;
+  --color-5: #00475a;
   --color-6: #001b24;
 
   background-color: var(--color-5);
   font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 17px;
   color: var(--color-2);
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 h1,

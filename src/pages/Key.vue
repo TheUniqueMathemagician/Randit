@@ -1,9 +1,9 @@
 <template>
-	<q-page class='q-pa-md'>
-		<section class='max-size container-center'>
+	<main class='q-pa-md'>
+		<section>
 			<q-form
-				@submit='submitHandler'
-				class='grid'
+				@submit='h_submit'
+				class='form q-mb-md'
 			>
 				<q-list>
 					<q-item
@@ -83,14 +83,10 @@
 									id='amount'
 									class='right'
 									ref='number'
-									:min='0'
+									:min='1'
 									:max='99'
 									v-model='amount'
-									@change='
-                    a_event => {
-                      amount = a_event.target.value;
-                    }
-                  '
+									@change='h_change'
 								/>
 							</div>
 						</q-item-section>
@@ -99,7 +95,7 @@
 				<q-btn
 					color='primary'
 					type='submit'
-					class='q-ma-md no-border-radius'
+					class='q-mb-md no-border-radius'
 				>Générer</q-btn>
 			</q-form>
 		</section>
@@ -118,7 +114,7 @@
 				input-class='custom text-white text-center'
 			></q-input>
 		</section>
-	</q-page>
+	</main>
 </template>
 
 <script>
@@ -134,10 +130,7 @@
 				},
 				set(a_value) {
 					a_value = parseInt(a_value)
-					this.$store.commit(
-						'config/key/amount',
-						this.$store.getters['config/key/amount']
-					)
+					this.$store.commit('config/key/amount', a_value)
 				},
 			},
 			digits: {
@@ -199,7 +192,10 @@
 			}
 		},
 		methods: {
-			submitHandler(a_event) {
+			h_change(a_event) {
+				this.amount = a_event.target.value
+			},
+			h_submit(a_event) {
 				if (this.amount < 1) {
 					return
 				}
@@ -245,17 +241,16 @@
 				this.text = generated
 			},
 		},
-		name: 'generator_page',
+		name: 'key_page',
 	}
 </script>
 
 <style scoped lang="scss">
-	.grid {
+	.form {
 		align-items: center;
 		color: var(--color-1);
 		display: grid;
-		padding: 0.5rem 0;
-		row-gap: 0.7rem;
+		row-gap: 1rem;
 	}
 
 	.custom {

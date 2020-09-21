@@ -1,5 +1,5 @@
 <template>
-	<q-page class='q-pa-md'>
+	<main class='q-pa-md'>
 		<section>
 			<h1 class='noselect text-center'>Préférences</h1>
 			<h2 class='noselect'>Clés</h2>
@@ -209,7 +209,7 @@
 				</div>
 			</q-form>
 		</section>
-	</q-page>
+	</main>
 </template>
 
 <script>

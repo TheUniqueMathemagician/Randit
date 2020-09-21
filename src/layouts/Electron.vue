@@ -1,5 +1,8 @@
 <template>
-	<q-layout view='hhh lpR lFf'>
+	<q-layout
+		view='hhh lpR lFf'
+		id='q-app'
+	>
 		<q-header
 			class='bg-primary text-white q-ma-none'
 			height-hint='98'

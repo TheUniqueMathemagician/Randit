@@ -1,6 +1,6 @@
 <template>
 	<label
-		class='shadow-3'
+		class='shadow-2'
 		:for='id'
 		@mousewheel.stop.prevent='h_mousewheel($event)'
 	>
@@ -59,7 +59,7 @@
 				}
 			},
 			h_change(a_event) {
-				if (typeof a_event.target.value != Number) {
+				if (typeof parseInt(a_event.target.value) != 'number') {
 					a_event.target.value = this.min
 				}
 				this.$emit('change', a_event)
@@ -102,17 +102,17 @@
 		display: flex;
 		height: 100%;
 		margin: 0;
-		padding: 0;
 		outline: 0 transparent;
 	}
 	input[type='number'] {
 		background: transparent;
 		border: solid 1px var(--color-6);
 		border-radius: 0;
+		box-sizing: border-box;
 		color: var(--color-2);
 		margin: 0;
 		outline: 0 transparent;
-		padding: 0;
+		padding: 0.5rem;
 		position: relative;
 		text-align: center;
 		transition: border-color 0.3s ease;
@@ -124,6 +124,12 @@
 		}
 		&:focus {
 			border-color: var(--color-1);
+		}
+	}
+	// Fixes a firefox issue on mobile
+	@media screen and (max-width: 500px) {
+		input[type='number'] {
+			max-width: 20vw;
 		}
 	}
 </style>

@@ -1,35 +1,39 @@
 <template>
-	<q-page class='q-pa-md page'>
+	<q-page>
 		<section class='radio-group container-center'>
 			<q-form @submit.prevent='h_submit'>
 				<div class='group'>
 					<InputRadio
-						v-for='(item, index) in usual'
 						name='dice'
+						v-for='(item, index) in usual'
+						:checked='index === usualIndex'
 						:id='"dice_" + item'
 						:key='index'
+						:label='item'
 						:value='item'
-						@click='isCustom = false'
+						@change='() => {isCustom = false; usualIndex = index}'
 					>{{ item }}</InputRadio>
 				</div>
-				<br />
-				<div class='custom-radio'>
+				<div class='custom-radio q-my-md'>
 					<InputRadio
 						name='dice'
-						:id='"dice_custom"'
+						id='dice_custom'
+						label='Personnalisé'
+						:checked='isCustom'
 						:value='custom'
-						@click='isCustom = true'
+						@change='isCustom = true'
 					>Personnalisé</InputRadio>
 					<div class='spacer'>
-						<div :class='{ "bg-active": isCustom }'></div>
+						<div
+							class='shadow-3'
+							:class='{ "bg-active": isCustom }'
+						></div>
 					</div>
 					<InputNumber
-						class='border'
 						id='custom'
 						:value='custom'
 						:max='999'
 						:min='1'
-						:class='{ "border-active": isCustom}'
 						@change='
               a_event => {
                 custom = parseInt(a_event.target.value);
@@ -38,7 +42,9 @@
 					/>
 				</div>
 
-				<div class='group auto q-pa-md q-mt-md'>
+				<br />
+
+				<div class='group auto'>
 					<q-btn
 						class='no-border-radius'
 						color='primary'
@@ -62,8 +68,8 @@
 			</q-form>
 		</section>
 
-		<section>
-			<div class='row justify-between'>
+		<section class='q-mt-md'>
+			<div class='row justify-between items-center'>
 				<h2 class='noselect'>Résultat</h2>
 				<div class='text-h3'>{{ generated }}</div>
 			</div>
@@ -77,6 +83,7 @@
 					color='primary'
 				/>
 			</div>
+
 			<q-slide-transition>
 				<div v-show='details'>
 					<table>
@@ -113,34 +120,6 @@
 					</table>
 				</div>
 			</q-slide-transition>
-		</section>
-
-		<section>
-			<q-btn-toggle
-				v-model='test'
-				toggle-color='primary'
-				:options='[
-        {label: "One", value: "1"},
-        {label: "Two", value: "2"},
-        {label: "Three", value: "3"},
-        {label: "Three", value: "4"},
-        {label: "Three", value: "5"},
-        {label: "Three", value: "9"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "three"},
-        {label: "Three", value: "four"},
-        {label: "Three", value: "three"}
-      ]'
-			/>
 		</section>
 	</q-page>
 </template>
@@ -204,7 +183,6 @@
 		},
 		data() {
 			return {
-				test: undefined,
 				detailsValues: [],
 				generatedValues: [],
 				plural: false,
@@ -254,15 +232,11 @@
 </script>
 
 <style scoped lang="scss">
-	.big {
-		font-size: 1.6rem;
-	}
-
 	.group {
 		display: grid;
 		column-gap: 1rem;
 		row-gap: 1rem;
-		grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
 		grid-auto-flow: row;
 		align-items: center;
 	}
@@ -273,39 +247,21 @@
 		display: grid;
 		grid-template-columns: auto 1fr auto;
 	}
-
-	.flex {
-		display: flex;
-		align-items: center;
-	}
-	.flex.space-between {
-		justify-content: space-between;
-	}
-	.flex.left {
-		justify-content: flex-start;
-	}
-	.custom-radio .spacer div.bg-active {
-		background: var(--color-3);
-	}
-	.custom-radio .spacer + .border-active {
-		border: 3px solid var(--color-3);
-	}
-	.custom-radio .border {
-		border: 3px solid transparent;
-	}
-	.custom-radio .spacer {
-		display: flex;
-		align-items: center;
-	}
-	.custom-radio .spacer div {
-		width: 100%;
-		background: var(--color-6);
-		height: 4px;
-	}
-	.wrapper {
-		max-height: 0;
-		overflow: hidden;
-		transition: max-height 0.4s ease;
+	.custom-radio {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		.spacer {
+			align-items: center;
+			display: flex;
+			div {
+				background: var(--color-6);
+				height: 4px;
+				width: 100%;
+				&.bg-active {
+					background: var(--color-3);
+				}
+			}
+		}
 	}
 
 	h2 {
@@ -321,11 +277,5 @@
 	}
 	table svg polygon {
 		fill: var(--color-2);
-	}
-	.page {
-		display: grid;
-		column-gap: 1rem;
-		row-gap: 1rem;
-		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 	}
 </style>

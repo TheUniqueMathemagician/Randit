@@ -1,5 +1,5 @@
 <template>
-	<q-page class='q-pa-md'>
+	<main class='q-pa-md'>
 		<!-- <header>
 			<h1 class='text-center'>{{ $t("ABOUT_THIS_APP") }}</h1>
 		</header>
@@ -62,18 +62,17 @@
 		</section>
 
 		<footer>
-			<h2>Quelque chose à signaler?</h2>
-			<p>Vous pouvez signaler un bug ou des suggestions à</p>
+			<!-- <h2>Quelque chose à signaler?</h2> -->
+			<!-- <p>Vous pouvez signaler un bug ou des suggestions à </p> -->
 			<p>Application faite avec amour par Ambrelium &copy;.</p>
 			<p class='q-mb-md'>
 				<q-btn
-					type='a'
-					@click.prevent.stop='$router.go(-1)'
+					to='/'
 					color='primary'
 				>Retour</q-btn>
 			</p>
 		</footer>
-	</q-page>
+	</main>
 </template>
 
 <script>

@@ -1,21 +1,22 @@
 <template>
 	<label
+		class='shadow-2 relative-position'
 		role='button'
 		tabindex='0'
 		v-ripple
-		class='shadow-3 relative-position'
+		:class='{isChecked}'
 		:for='id'
-		:class='{checked}'
 	>
 		<input
 			hidden
 			type='radio'
-			:name='name'
+			:checked='checked'
 			:id='id'
+			:name='name'
 			:value='value'
 			@change='h_change($event)'
 		/>
-		<span>{{value}}</span>
+		<span class='noselect q-py-sm q-px-md'>{{label}}</span>
 	</label>
 </template>
 
@@ -23,7 +24,7 @@
 	export default {
 		data() {
 			return {
-				checked: false,
+				isChecked: false,
 			}
 		},
 		name: 'input_radio',
@@ -33,9 +34,19 @@
 			},
 		},
 		props: {
+			checked: {
+				default: false,
+				type: Boolean,
+				required: false,
+			},
 			id: {
 				default: '',
 				type: String,
+				required: false,
+			},
+			label: {
+				default: '',
+				type: [Number, String],
 				required: false,
 			},
 			name: {
@@ -66,8 +77,6 @@
 		}
 		input[type='radio'] + span {
 			box-sizing: border-box;
-			height: 100%;
-			padding: 0.5rem;
 			text-align: center;
 			width: 100%;
 		}

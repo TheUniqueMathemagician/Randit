@@ -1,11 +1,33 @@
 <template>
 	<div id='q-app'>
-		<router-view />
+		<electron v-if='isElectron'></electron>
+		<desktop v-else-if='isDesktop'></desktop>
+		<mobile v-else-if='isMobile'></mobile>
+		<main v-else>Platform couldn't be detected</main>
 	</div>
 </template>
 
 <script>
+	import Desktop from './layouts/Desktop'
+	import Electron from './layouts/Electron'
+	import Mobile from './layouts/Mobile'
 	export default {
+		components: {
+			Desktop,
+			Electron,
+			Mobile,
+		},
+		computed: {
+			isElectron() {
+				return this.$q.platform.is.electron
+			},
+			isDesktop() {
+				return this.$q.platform.is.desktop
+			},
+			isMobile() {
+				return this.$q.platform.is.mobile
+			},
+		},
 		created() {
 			// TODO: load locally and from firebase at the same time. if firebase is loaded, cancel local, if local,
 			// still wait firebase to resolve
